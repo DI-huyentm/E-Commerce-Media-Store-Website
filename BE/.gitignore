@@ -60,3 +60,8 @@ node_modules/
 ### Other ###
 *.bak
 *~
+
+# Eclipse/STS
+.classpath
+.project
+.settings/
