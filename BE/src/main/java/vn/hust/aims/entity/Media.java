@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Data
@@ -19,6 +20,9 @@ public class Media {
     private BigDecimal price;
     private Integer quantityInStock;
     private Boolean isRushDeliveryEnabled;
+
+    @OneToMany(mappedBy = "media", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MediaImage> images; // Danh sách ảnh
 }
 
 
