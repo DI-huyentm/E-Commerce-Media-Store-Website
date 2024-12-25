@@ -19,7 +19,7 @@ import Language from "./Language";
 import Navigation from "./Navigation";
 import MobileRightSidebar from "./MobileRightSidebar";
 import Cart from './Cart';
-
+import { useRouter } from "next/router";
 const Header = () => {
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up("lg"));
   const lgDown = useMediaQuery((theme) => theme.breakpoints.down("lg"));
@@ -45,10 +45,7 @@ const Header = () => {
   return (
     (<AppBarStyled position="sticky" color="default">
       <ToolbarStyled>
-        {/* ------------------------------------------- */}
-        {/* Toggle Button Sidebar */}
-        {/* ------------------------------------------- */}
-        <IconButton
+        {/* <IconButton
           color="inherit"
           aria-label="menu"
           onClick={
@@ -58,12 +55,12 @@ const Header = () => {
           }
         >
           <IconMenu2 size="20" />
-        </IconButton>
+        </IconButton> */}
 
         {/* ------------------------------------------- */}
         {/* Search Dropdown */}
         {/* ------------------------------------------- */}
-        <Search />
+        {/* <Search /> */}
         {lgUp ? (
           <>
             <Navigation />
@@ -76,7 +73,7 @@ const Header = () => {
         <Stack spacing={1} direction="row" sx={{
           alignItems: "center"
         }}>
-          <Language />
+          {/* <Language /> */}
           {/* ------------------------------------------- */}
           {/* Ecommerce Dropdown */}
           {/* ------------------------------------------- */}
@@ -93,7 +90,7 @@ const Header = () => {
             )}
           </IconButton>
 
-          <Notifications />
+          {/* <Notifications /> */}
           {/* ------------------------------------------- */}
           {/* Toggle Right Sidebar for mobile */}
           {/* ------------------------------------------- */}

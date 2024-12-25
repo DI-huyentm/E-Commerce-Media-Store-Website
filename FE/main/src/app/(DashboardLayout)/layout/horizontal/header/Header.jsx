@@ -1,5 +1,5 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
+// import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
@@ -10,11 +10,11 @@ import { styled } from '@mui/material/styles';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleMobileSidebar, setDarkMode } from '../../../../../store/customizer/CustomizerSlice';
 import { IconMenu2, IconMoon, IconSun } from '@tabler/icons-react';
-import Notifications from '../../vertical/header/Notification';
+// import Notifications from '../../vertical/header/Notification';
 
-import Profile from '../../vertical/header/Profile';
+// import Profile from '../../vertical/header/Profile';
 import Search from '../../vertical/header/Search';
-import Language from '../../vertical/header/Language';
+// import Language from '../../vertical/header/Language';
 import Navigation from '../../vertical/header/Navigation';
 import Logo from '../../shared/logo/Logo';
 import Cart from '../../vertical/header/Cart';
@@ -55,7 +55,7 @@ const Header = () => {
         {/* ------------------------------------------- */}
         {/* Toggle Button Sidebar */}
         {/* ------------------------------------------- */}
-        {lgDown ? (
+        {/* {lgDown ? (
           <IconButton
             color="inherit"
             aria-label="menu"
@@ -65,7 +65,7 @@ const Header = () => {
           </IconButton>
         ) : (
           ''
-        )}
+        )} */}
         {/* ------------------------------------------- */}
         {/* Search Dropdown */}
         {/* ------------------------------------------- */}
@@ -81,7 +81,7 @@ const Header = () => {
         <Stack spacing={1} direction="row" sx={{
           alignItems: "center"
         }}>
-          <Language />
+          {/* <Language /> */}
           {/* ------------------------------------------- */}
           {/* Ecommerce Dropdown */}
           {/* ------------------------------------------- */}
@@ -97,7 +97,7 @@ const Header = () => {
             )}
           </IconButton>
 
-          <Notifications />
+          {/* <Notifications /> */}
           <Profile />
         </Stack>
       </ToolbarStyled>

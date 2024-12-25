@@ -1,0 +1,98 @@
+{
+  "app\\components\\dashboards\\ecommerce\\Expence.jsx -> react-apexcharts": {
+    "id": "app\\components\\dashboards\\ecommerce\\Expence.jsx -> react-apexcharts",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_react-apexcharts_dist_react-apexcharts_min_js.js"
+    ]
+  },
+  "app\\components\\dashboards\\ecommerce\\Growth.jsx -> react-apexcharts": {
+    "id": "app\\components\\dashboards\\ecommerce\\Growth.jsx -> react-apexcharts",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_react-apexcharts_dist_react-apexcharts_min_js.js"
+    ]
+  },
+  "app\\components\\dashboards\\ecommerce\\MonthlyEarnings.jsx -> react-apexcharts": {
+    "id": "app\\components\\dashboards\\ecommerce\\MonthlyEarnings.jsx -> react-apexcharts",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_react-apexcharts_dist_react-apexcharts_min_js.js"
+    ]
+  },
+  "app\\components\\dashboards\\ecommerce\\ProductPerformances.jsx -> react-apexcharts": {
+    "id": "app\\components\\dashboards\\ecommerce\\ProductPerformances.jsx -> react-apexcharts",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_react-apexcharts_dist_react-apexcharts_min_js.js"
+    ]
+  },
+  "app\\components\\dashboards\\ecommerce\\RevenueUpdates.jsx -> react-apexcharts": {
+    "id": "app\\components\\dashboards\\ecommerce\\RevenueUpdates.jsx -> react-apexcharts",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_react-apexcharts_dist_react-apexcharts_min_js.js"
+    ]
+  },
+  "app\\components\\dashboards\\ecommerce\\Sales.jsx -> react-apexcharts": {
+    "id": "app\\components\\dashboards\\ecommerce\\Sales.jsx -> react-apexcharts",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_react-apexcharts_dist_react-apexcharts_min_js.js"
+    ]
+  },
+  "app\\components\\dashboards\\ecommerce\\SalesOverview.jsx -> react-apexcharts": {
+    "id": "app\\components\\dashboards\\ecommerce\\SalesOverview.jsx -> react-apexcharts",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_react-apexcharts_dist_react-apexcharts_min_js.js"
+    ]
+  },
+  "app\\components\\dashboards\\ecommerce\\SalesTwo.jsx -> react-apexcharts": {
+    "id": "app\\components\\dashboards\\ecommerce\\SalesTwo.jsx -> react-apexcharts",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_react-apexcharts_dist_react-apexcharts_min_js.js"
+    ]
+  },
+  "app\\components\\dashboards\\ecommerce\\YearlySales.jsx -> react-apexcharts": {
+    "id": "app\\components\\dashboards\\ecommerce\\YearlySales.jsx -> react-apexcharts",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_react-apexcharts_dist_react-apexcharts_min_js.js"
+    ]
+  },
+  "app\\components\\dashboards\\modern\\Customers.jsx -> react-apexcharts": {
+    "id": "app\\components\\dashboards\\modern\\Customers.jsx -> react-apexcharts",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_react-apexcharts_dist_react-apexcharts_min_js.js"
+    ]
+  },
+  "app\\components\\dashboards\\modern\\EmployeeSalary.jsx -> react-apexcharts": {
+    "id": "app\\components\\dashboards\\modern\\EmployeeSalary.jsx -> react-apexcharts",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_react-apexcharts_dist_react-apexcharts_min_js.js"
+    ]
+  },
+  "app\\components\\dashboards\\modern\\MonthlyEarnings.jsx -> react-apexcharts": {
+    "id": "app\\components\\dashboards\\modern\\MonthlyEarnings.jsx -> react-apexcharts",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_react-apexcharts_dist_react-apexcharts_min_js.js"
+    ]
+  },
+  "app\\components\\dashboards\\modern\\Projects.jsx -> react-apexcharts": {
+    "id": "app\\components\\dashboards\\modern\\Projects.jsx -> react-apexcharts",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_react-apexcharts_dist_react-apexcharts_min_js.js"
+    ]
+  },
+  "app\\components\\dashboards\\modern\\RevenueUpdates.jsx -> react-apexcharts": {
+    "id": "app\\components\\dashboards\\modern\\RevenueUpdates.jsx -> react-apexcharts",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_react-apexcharts_dist_react-apexcharts_min_js.js"
+    ]
+  },
+  "app\\components\\dashboards\\modern\\WeeklyStats.jsx -> react-apexcharts": {
+    "id": "app\\components\\dashboards\\modern\\WeeklyStats.jsx -> react-apexcharts",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_react-apexcharts_dist_react-apexcharts_min_js.js"
+    ]
+  },
+  "app\\components\\dashboards\\modern\\YearlyBreakup.jsx -> react-apexcharts": {
+    "id": "app\\components\\dashboards\\modern\\YearlyBreakup.jsx -> react-apexcharts",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_react-apexcharts_dist_react-apexcharts_min_js.js"
+    ]
+  }
+}
