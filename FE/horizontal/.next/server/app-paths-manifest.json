@@ -1,5 +1,0 @@
-{
-  "/(DashboardLayout)/page": "app/(DashboardLayout)/page.js",
-  "/(DashboardLayout)/dashboards/ecommerce/page": "app/(DashboardLayout)/dashboards/ecommerce/page.js",
-  "/(DashboardLayout)/apps/user-profile/gallery/page": "app/(DashboardLayout)/apps/user-profile/gallery/page.js"
-}

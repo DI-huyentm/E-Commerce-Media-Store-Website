@@ -2,9 +2,7 @@ package vn.hust.aims.subsystem.payment;
 
 public enum ProviderType {
   UNKNOWN(0, "UNKNOWN"),
-  VNPAY(1, "VNPAY"),
-  PAYPAL(2, "PAYPAL"),
-  HUSTPAY(2, "HUSTPAY");
+  VNPAY(1, "VNPAY");
 
   private final int intValue;
   private final String stringValue;

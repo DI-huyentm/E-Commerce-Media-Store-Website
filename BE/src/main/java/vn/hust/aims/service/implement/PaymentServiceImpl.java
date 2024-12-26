@@ -17,16 +17,13 @@ import vn.hust.aims.service.OrderService;
 import vn.hust.aims.service.PaymentService;
 import vn.hust.aims.service.dto.input.email.SendEmailInput;
 import vn.hust.aims.service.dto.input.payment.RefundInput;
-import vn.hust.aims.service.dto.input.payment.paypal.PaypalTransactionInput;
 import vn.hust.aims.service.dto.input.payment.vnpay.VNPayTransactionInput;
-import vn.hust.aims.service.dto.output.payment.paypal.PaypalTransactionOutput;
 import vn.hust.aims.service.dto.output.payment.vnpay.VNPayTransactionOutput;
 import vn.hust.aims.subsystem.payment.PaymentSubsystem;
 import vn.hust.aims.subsystem.payment.PaymentSubsystemFactory;
 import vn.hust.aims.subsystem.payment.ProviderType;
 import vn.hust.aims.service.dto.input.payment.PayOrderInput;
 import vn.hust.aims.service.dto.output.payment.PayOrderOutput;
-import vn.hust.aims.subsystem.payment.provider.paypalsubsystem.PaypalSubsystem;
 import vn.hust.aims.utils.TimeUtils;
 
 @Service
