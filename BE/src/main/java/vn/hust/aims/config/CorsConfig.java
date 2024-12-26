@@ -8,18 +8,19 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class CorsConfig {
 
-    @Bean
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**")
-                    .allowedOriginPatterns("*") // Cho phép tất cả các origin
-                    .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH")
-                    .allowedHeaders("*")
-                    .allowCredentials(true)
-                    .maxAge(3600);
-            }
-        };
-    }
+  @Bean
+  public WebMvcConfigurer corsConfigurer() {
+    return new WebMvcConfigurer() {
+      @Override
+      public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+            .allowedOriginPatterns("*") // Cho phép tất cả các origin
+            .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH")
+            .allowedHeaders("*")
+            .allowCredentials(true)
+            .maxAge(3600);
+      }
+    };
+  }
 }
+
