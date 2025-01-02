@@ -49,28 +49,12 @@ const ProductList = ({ onClick }) => {
       products = products.filter((_product) => _product.category.includes(filters.category));
     }
 
-    //FILTER PRODUCTS BY GENDER
-    if (filters.gender !== 'All') {
-      products = filter(products, (_product) => _product.gender === filters.gender);
-    }
 
-    //FILTER PRODUCTS BY GENDER
-    if (filters.color !== 'All') {
-      products = products.filter((_product) => _product.colors.includes(filters.color));
-    }
 
     //FILTER PRODUCTS BY Search
     if (search !== '') {
       products = products.filter((_product) =>
         _product.title.toLocaleLowerCase().includes(search.toLocaleLowerCase()),
-      );
-    }
-
-    //FILTER PRODUCTS BY Price
-    if (filters.price !== 'All') {
-      const minMax = filters.price ? filters.price.split('-') : '';
-      products = products.filter((_product) =>
-        filters.price ? _product.price >= minMax[0] && _product.price <= minMax[1] : true,
       );
     }
 
@@ -213,7 +197,7 @@ const ProductList = ({ onClick }) => {
                             ${product.salesPrice}
                           </Typography>
                         </Stack>
-                        <Rating name="read-only" size="small" value={product.rating} readOnly />
+                        {/* <Rating name="read-only" size="small" value={product.rating} readOnly /> */}
                       </Stack>
                     </CardContent>
                   </BlankCard>
