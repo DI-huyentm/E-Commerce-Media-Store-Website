@@ -77,6 +77,26 @@ public class MediaServiceImpl implements MediaService {
     return GetAllMediaOutput.builder().mediaPage(mediaPage).build();
   }
 
+  public String createMediaImage(MultipartFile file) {
+    try {
+      String filename = UUID.randomUUID() + "_" + file.getOriginalFilename();
+
+      // Get the resource directory
+      Resource resourceDir = resourceLoader.getResource("classpath:images/");
+
+      // Create the path for the new file
+      Path filePath = Paths.get(resourceDir.getURI()).resolve(filename);
+
+      // Write the file content to the specified path
+      Files.write(filePath, file.getBytes());
+
+      return filename;
+    } catch (IOException e) {
+      // Handle exceptions accordingly, e.g., log or throw a custom exception
+      throw new RuntimeException("Failed to upload image", e);
+    }
+  }
+
   public byte[] getMediaImage(String imageName) {
     try {
       Resource resource = resourceLoader.getResource("classpath:images/" + imageName);
