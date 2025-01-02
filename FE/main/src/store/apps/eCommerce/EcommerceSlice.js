@@ -2,7 +2,7 @@ import axios from '../../../utils/axios';
 import { filter, map } from 'lodash';
 import { createSlice } from '@reduxjs/toolkit';
 
-const API_URL = '/api/data/eCommerce/ProductsData';
+//const API_URL = '/api/data/eCommerce/ProductsData';
 
 const initialState = {
   products: [],
@@ -12,10 +12,6 @@ const initialState = {
   total: 0,
   filters: {
     category: 'All',
-    color: 'All',
-    gender: 'All',
-    price: 'All',
-    rating: '',
   },
   error: ''
 };
@@ -38,27 +34,15 @@ export const EcommerceSlice = createSlice({
     setVisibilityFilter: (state, action) => {
       state.currentFilter = action.payload;
     },
-    //  SORT  PRODUCTS
+    // SORT PRODUCTS
     sortByProducts(state, action) {
       state.sortBy = action.payload;
     },
-    //  SORT  PRODUCTS
-    sortByGender(state, action) {
-      state.filters.gender = action.payload.gender;
-    },
-    //  SORT  By Color
-    sortByColor(state, action) {
-      state.filters.color = action.payload.color;
-    },
-    //  SORT  By Color
-    sortByPrice(state, action) {
-      state.filters.price = action.payload.price;
-    },
-    //  FILTER PRODUCTS
+    // FILTER PRODUCTS
     filterProducts(state, action) {
       state.filters.category = action.payload.category;
     },
-    //  FILTER Reset
+    // FILTER Reset
     filterReset(state) {
       state.filters.category = 'All';
       state.filters.color = 'All';
@@ -108,6 +92,7 @@ export const EcommerceSlice = createSlice({
     },
   },
 });
+
 export const {
   hasError,
   getProducts,
@@ -115,23 +100,23 @@ export const {
   setVisibilityFilter,
   sortByProducts,
   filterProducts,
-  sortByGender,
   increment,
   deleteCart,
   decrement,
   addToCart,
-  sortByPrice,
   filterReset,
-  sortByColor,
 } = EcommerceSlice.actions;
 
 export const fetchProducts = () => async (dispatch) => {
   try {
-    const response = await axios.get(`${API_URL}`);
-    dispatch(getProducts(response.data));
+    const response = await axios.get('http://localhost:8080/api/v1/media');
+    console.log(response.data);  // Kiểm tra dữ liệu trả về từ API
+    dispatch(getProducts(response.data));  // Dispatch với dữ liệu nhận được
   } catch (error) {
     dispatch(hasError(error));
+    console.error("API Error: ", error);  // In lỗi API nếu có
   }
 };
+
 
 export default EcommerceSlice.reducer;
