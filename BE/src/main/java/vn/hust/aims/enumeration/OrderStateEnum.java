@@ -3,9 +3,7 @@ package vn.hust.aims.enumeration;
 public enum OrderStateEnum {
   UNKNOWN(0, "UNKNOWN"),
   PROCESSING(1, "PROCESSING"),
-  CANCEL(2, "CANCEL"),
-  REJECT(2, "REJECT"),
-  ACCEPT(2, "ACCEPT");
+  CANCEL(2, "CANCEL");
 
   private final int intValue;
 

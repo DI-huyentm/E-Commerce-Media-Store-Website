@@ -54,6 +54,8 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 import vn.hust.aims.service.MediaService;
 
+import static java.lang.System.out;
+
 @Service
 @RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
@@ -134,17 +136,6 @@ public class OrderServiceImpl implements OrderService {
 
     sendOrderConfirmationEmail(order, input.getState());
 
-    if (input.getState().getStringValue().equals("REJECT")){
-      order.getOrderMediaList().forEach(orderMedia -> {
-        Media media = orderMedia.getMedia();
-        Integer updatedQuantity = media.getQuantityInStock() + orderMedia.getQuantity();
-        mediaService.updateQuantityInStock(media, updatedQuantity);
-      });
-      paymentService.refund(RefundInput.builder()
-          .order(order)
-          .build());
-    }
-
     return UpdateOrderStateOutput.from(
         "Updated order " + input.getOrderId() + " to state " + input.getState().getStringValue() + " successfully"
     );
@@ -175,6 +166,8 @@ public class OrderServiceImpl implements OrderService {
       Integer updatedQuantity = media.getQuantityInStock() + orderMedia.getQuantity();
       mediaService.updateQuantityInStock(media, updatedQuantity);
     });
+
+    System.out.println("get Order Media List Done"); // Already logged
 
     paymentService.refund(RefundInput.builder()
             .order(order)
@@ -355,7 +348,7 @@ public class OrderServiceImpl implements OrderService {
   }
 
   private void sendOrderConfirmationEmail(Order order, OrderStateEnum newState) {
-    String templateName = (newState == OrderStateEnum.ACCEPT) ? "Đơn hàng đã được duyệt" : "Đơn hàng đã bị từ chối";
+    String templateName = "Xác nhận đơn hàng";
 
     List<Param> params = Arrays.asList(
         Param.builder().key("orderId").value(order.getId()).build(),
