@@ -57,10 +57,10 @@ public class MediaController {
         return ResponseEntity.ok(body);
     }
 
-//    @GetMapping("/images/{image}")
-//    public ResponseEntity<byte[]> getMediaImage(@PathVariable String image) {
-//        byte[] imageBytes = mediaService.getMediaImage(image);
-//
-//        return ResponseEntity.ok().contentType(org.springframework.http.MediaType.IMAGE_JPEG).body(imageBytes);
-//    }
+    @GetMapping("/images/{image}")
+    public ResponseEntity<byte[]> getMediaImage(@PathVariable String image) {
+        byte[] imageBytes = mediaService.getMediaImage(image);
+
+        return ResponseEntity.ok().contentType(org.springframework.http.MediaType.IMAGE_JPEG).body(imageBytes);
+    }
 }
