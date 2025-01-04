@@ -113,16 +113,16 @@ VALUES
     ('George Lucas', 'UNKNOWN', 'Adventure', 'English', '2025-04-15', 165.5, 'Lucasfilm', 'English', 44),
     ('Greta Gerwig', 'BLURAY', 'Drama', 'English', '2025-06-20', 120.75, 'Columbia Pictures', 'English', 45);
 
-INSERT INTO lp (artists, genres, record_label, release_date, track_list, id)
-VALUES
-    ('Elvis Presley', 'Rock and Roll', 'RCA Records', '1956-03-23', 'Blue Suede Shoes, Heartbreak Hotel', 46),
-    ('Miles Davis', 'Jazz', 'Columbia Records', '1959-08-17', 'So What, Freddie Freeloader', 47),
-    ('The Beatles', 'Rock', 'Parlophone', '1967-05-26', 'Lucy in the Sky with Diamonds, A Day in the Life', 48),
-    ('Michael Jackson', 'Pop', 'Epic Records', '1982-11-30', 'Billie Jean, Beat It', 49),
-    ('Bob Marley', 'Reggae', 'Island Records', '1977-06-03', 'Three Little Birds, No Woman, No Cry', 50);
+--INSERT INTO lp (artists, genres, record_label, release_date, track_list, id)
+--VALUES
+--    ('Elvis Presley', 'Rock and Roll', 'RCA Records', '1956-03-23', 'Blue Suede Shoes, Heartbreak Hotel', 46),
+--    ('Miles Davis', 'Jazz', 'Columbia Records', '1959-08-17', 'So What, Freddie Freeloader', 47),
+--    ('The Beatles', 'Rock', 'Parlophone', '1967-05-26', 'Lucy in the Sky with Diamonds, A Day in the Life', 48),
+--    ('Michael Jackson', 'Pop', 'Epic Records', '1982-11-30', 'Billie Jean, Beat It', 49),
+--    ('Bob Marley', 'Reggae', 'Island Records', '1977-06-03', 'Three Little Birds, No Woman, No Cry', 50);
 --
 INSERT INTO sender (config, provider)
-VALUES ('{"mail": {"host": "smtp.gmail.com", "port": "587", "password": "gwpp vehb oqnr mkvk", "username": "chamsockhachhangaims@gmail.com", "properties": {"mail": {"mime": {"charset": "UTF"}, "smtp": {"auth": true, "starttls": {"enable": true, "required": true}}}}, "default-encoding": "UTF-8"}}', 'GMAIL');
+VALUES ('{"mail": {"host": "smtp.gmail.com", "port": "587", "password": "llal cyxe xsxy qtyr", "username": "huyen.cnh70@gmail.com", "properties": {"mail": {"mime": {"charset": "UTF"}, "smtp": {"auth": true, "starttls": {"enable": true, "required": true}}}}, "default-encoding": "UTF-8"}}', 'GMAIL');
 
     INSERT INTO template (title, content, required_parameters)
 VALUES ('Xác nhận đơn hàng', '<!DOCTYPE html>
@@ -243,7 +243,7 @@ VALUES ('Xác nhận hủy đơn hàng', '<!DOCTYPE html>
   <p>Vui lòng xác nhận huỷ đơn hàng <a th:href="${confirm_cancel_order_link}">tại đây</a>
   <p>
     Nếu có bất kỳ câu hỏi hoặc cần thêm hỗ trợ, vui lòng liên hệ với chúng
-    tôi qua địa chỉ email: chamsockhachhangaims@gmail.com
+    tôi qua địa chỉ email: huyen.cnh70@gmail.com
   </p>
   <p>Xin cảm ơn bạn đã chọn sản phẩm của chúng tôi!</p>
   <div class="footer">
@@ -308,7 +308,7 @@ VALUES ('Hủy đơn hàng thành công', '<!DOCTYPE html>
   </ul>
   <p>
     Nếu có bất kỳ câu hỏi hoặc cần thêm hỗ trợ, vui lòng liên hệ với chúng
-    tôi qua địa chỉ email: chamsockhachhangaims@gmail.com
+    tôi qua địa chỉ email: huyen.cnh70@gmail.com
   </p>
   <p>Xin cảm ơn bạn đã chọn sản phẩm của chúng tôi!</p>
   <div class="footer">
