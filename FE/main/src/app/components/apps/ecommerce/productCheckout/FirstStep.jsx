@@ -3,7 +3,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import ChildCard from '../../../shared/ChildCard';
 
-const FirstStep = ({ total, Discount }) => {
+const FirstStep = ({ total }) => {
   return (<>
     <Box sx={{
       my: 3
@@ -32,7 +32,7 @@ const FirstStep = ({ total, Discount }) => {
             }}>
               Sub Total
             </Typography>
-            <Typography variant="h6">${total}</Typography>
+            <Typography variant="h6">{total}</Typography>
           </Stack>
           {/* Discount */}
           <Stack
@@ -44,10 +44,9 @@ const FirstStep = ({ total, Discount }) => {
             <Typography variant="h6" sx={{
               fontWeight: 400
             }}>
-              Discount 5%
             </Typography>
             <Typography variant="h6" color="error">
-              -${Discount}
+              {/* -${Discount} */}
             </Typography>
           </Stack>
           {/* Sub Total */}
@@ -73,7 +72,7 @@ const FirstStep = ({ total, Discount }) => {
             }}>
             <Typography variant="h6">Total</Typography>
             <Typography variant="h5" color="success">
-              ${total - Discount}
+              {total}đ
             </Typography>
           </Stack>
         </Box>

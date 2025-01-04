@@ -14,26 +14,29 @@ import Typography from '@mui/material/Typography';
 import Link from 'next/link';
 import { IconMinus, IconPlus, IconTrash } from '@tabler/icons-react';
 import { useDispatch, useSelector } from 'react-redux';
-import { increment, deleteCart, decrement } from '@/store/apps/eCommerce/EcommerceSlice';
+//import { increment, deleteCart, decrement } from '@/store/apps/eCommerce/EcommerceSlice';
 import Image from 'next/image';
-
+//import { deleteCart, incrementItemQuantity, decrementItemQuantity } from '@/store/apps/eCommerce/CartManage';  // Nhập hàm delete
+import { incrementItemQuantity, decrementItemQuantity, selectCartItems } from '@/store/apps/eCommerce/CartManage';
 const AddToCart = () => {
   const dispatch = useDispatch();
 
   // Get Products
-  const Cartproduct = useSelector((state) => state.ecommerceReducer.cart);
-  console.log(Cartproduct);
-  const Increase = (productId) => {
-    dispatch(increment(productId));
+  const cart = useSelector(selectCartItems);
+  console.log(cart);
+
+  const handleIncrement = (product) => {
+    incrementItemQuantity(dispatch, product);
   };
 
-  const Decrease = (productId) => {
-    dispatch(decrement(productId));
+  const handleDecrement = (product) => {
+    decrementItemQuantity(dispatch, product);
   };
+
 
   return (
     (<Box>
-      {Cartproduct.length > 0 ? (
+      {cart.length > 0 ? (
         <>
           <Box>
             <TableContainer sx={{ minWidth: 350 }}>
@@ -48,7 +51,7 @@ const AddToCart = () => {
                 </TableHead>
 
                 <TableBody>
-                  {Cartproduct.map((product) => (
+                  {cart.map((product) => (
                     <TableRow key={product.id}>
                       {/* ------------------------------------------- */}
                       {/* Product Image & Title */}
@@ -61,8 +64,8 @@ const AddToCart = () => {
                             gap: 2
                           }}>
                           <Avatar
-                            src={product.photo}
-                            alt={product.photo}
+                            src={product.media?.imageUrl}
+                            alt={product.media?.title}
                             sx={{
                               borderRadius: '10px',
                               height: '80px',
@@ -70,7 +73,7 @@ const AddToCart = () => {
                             }}
                           />
                           <Box>
-                            <Typography variant="h6">{product.title}</Typography>{' '}
+                            <Typography variant="h6">{product.media?.title}</Typography>{' '}
                             <Typography color="textSecondary" variant="body1">
                               {product.category}
                             </Typography>
@@ -87,17 +90,17 @@ const AddToCart = () => {
 
                       <TableCell>
                         <ButtonGroup size="small" color="success" aria-label="small button group">
-                          <Button onClick={() => Decrease(product.id)} disabled={product.qty < 2}>
+                          <Button onClick={() => handleDecrement(product.id)} disabled={product.quantity < 2}>
                             <IconMinus stroke={1.5} size="0.8rem" />
                           </Button>
-                          <Button>{product.qty}</Button>
-                          <Button onClick={() => Increase(product.id)}>
+                          <Button>{product.quantity}</Button>
+                          <Button onClick={() => handleIncrement(product.id)}>
                             <IconPlus stroke={1.5} size="0.8rem" />
                           </Button>
                         </ButtonGroup>
                       </TableCell>
                       <TableCell align="right">
-                        <Typography variant="h6">${product.price * product.qty}</Typography>
+                        <Typography variant="h6">{product.media?.price}đ</Typography>
                       </TableCell>
                     </TableRow>
                   ))}

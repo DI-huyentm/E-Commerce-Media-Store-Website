@@ -6,15 +6,16 @@ import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import AddToCart from '../productCart/AddToCart';
 import { IconArrowBack } from '@tabler/icons-react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import HorizontalStepper from './HorizontalStepper';
 import FirstStep from './FirstStep';
 import SecondStep from './SecondStep';
 import ThirdStep from './ThirdStep';
 import FinalStep from './FinalStep';
+import { incrementItemQuantity, decrementItemQuantity, selectCartItems } from '@/store/apps/eCommerce/CartManage';
 
 const ProductChecout = () => {
-  const checkout = useSelector((state) => state.ecommerceReducer.cart);
+  const checkout = useSelector(selectCartItems);
   const steps = ['Cart', 'Billing & address', 'Payment'];
   const [activeStep, setActiveStep] = React.useState(0);
   const handleNext = () => {
@@ -28,8 +29,7 @@ const ProductChecout = () => {
     setActiveStep(0);
   };
 
-  const total = sum(checkout.map((product) => product.price * product.qty));
-  const Discount = Math.round(total * (5 / 100));
+  const total = sum(checkout.map((product) => product.media?.price * product.quantity));
 
   return (
     (<Box>
@@ -54,7 +54,7 @@ const ProductChecout = () => {
                 {/* ------------------------------------------- */}
                 {/* Cart Total */}
                 {/* ------------------------------------------- */}
-                <FirstStep total={total} Discount={Discount} />
+                <FirstStep total={total} />
                 <Stack direction={'row'} sx={{
                   justifyContent: "space-between"
                 }}>
@@ -81,7 +81,7 @@ const ProductChecout = () => {
             {/* Step2 */}
             {/* ------------------------------------------- */}
             <SecondStep nexStep={handleNext} />
-            <FirstStep total={total} Discount={Discount} />
+            <FirstStep total={total}/>
             <Stack direction={'row'} sx={{
               justifyContent: "space-between"
             }}>
@@ -99,7 +99,7 @@ const ProductChecout = () => {
             {/* Step3 */}
             {/* ------------------------------------------- */}
             <ThirdStep />
-            <FirstStep total={total} Discount={Discount} />
+            <FirstStep total={total} />
             <Stack direction={'row'} sx={{
               justifyContent: "space-between"
             }}>

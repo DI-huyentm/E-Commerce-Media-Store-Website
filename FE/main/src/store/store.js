@@ -8,9 +8,10 @@ import NotesReducer from './apps/notes/NotesSlice';
 import EmailReducer from './apps/email/EmailSlice';
 import TicketReducer from './apps/tickets/TicketSlice';
 import ContactsReducer from './apps/contacts/ContactSlice';
-import EcommerceReducer from './apps/eCommerce/EcommerceSlice';
+import ecommerceReducer from './apps/eCommerce/EcommerceSlice';
 import UserProfileReducer from './apps/userProfile/UserProfileSlice';
 import BlogReducer from './apps/blog/BlogSlice';
+//import CartReducer from './apps/eCommerce/CartManage';
 
 const persistConfig = {
   key: 'root',
@@ -20,7 +21,8 @@ export const store = configureStore({
   reducer: {
     counter: counterReducer,
     customizer: persistReducer(persistConfig, CustomizerReducer),
-    ecommerceReducer: EcommerceReducer,
+    ecommerce: ecommerceReducer,
+    // cartReducer: CartReducer,
     chatReducer: ChatsReducer,
     emailReducer: EmailReducer,
     notesReducer: NotesReducer,

@@ -48,7 +48,7 @@ import vn.hust.aims.utils.ResponseUtil;
 @Controller
 @AllArgsConstructor
 @RequestMapping("/api/v1/cart")
-public class CartController {
+public class CartController{
 
   private final CartService cartService;
 

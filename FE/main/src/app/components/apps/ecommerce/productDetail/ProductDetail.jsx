@@ -17,9 +17,11 @@ import Typography from '@mui/material/Typography';
 import { useTheme } from '@mui/material/styles';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchProducts, addToCart } from '@/store/apps/eCommerce/EcommerceSlice';
+import { fetchProducts, addToCart, selectProductByIndex } from '@/store/apps/eCommerce/EcommerceSlice';
 import { IconCheck, IconMinus, IconPlus } from '@tabler/icons-react';
 import AlertCart from '../productCart/AlertCart';
+import { createSelector } from 'reselect';
+
 
 const ProductDetail = () => {
   const theme = useTheme();
@@ -33,17 +35,19 @@ const ProductDetail = () => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
-  // Get Products
-  const product = useSelector((state) => state.ecommerceReducer.products[getTitle - 1]);
+  // // Get Products
+  //  
+    // Get Products
+  const product = useSelector(selectProductByIndex(getTitle - 1));
 
-  /// select colors on click
-  const [scolor, setScolor] = useState(product ? product.colors[0] : '');
-  const setColor = (e) => {
-    setScolor(e);
-  };
 
+
+  //const product = useSelector((state) => state.ecommerceReducer.products?.result?.mediaPage?.content || [getTitle]);
+  // Find the product based on ID or index
+  //const product = products.find(p => p.id === getTitle) || null;
   //set qty
   const [count, setCount] = useState(1);
+//console.log('Product data:', products);
 
   // for alert when added something to cart
   const [cartalert, setCartalert] = React.useState(false);
@@ -58,11 +62,12 @@ const ProductDetail = () => {
     }
     setCartalert(false);
   };
+  
   return (
-    (<Box p={2}>
-      {product ? (
-        <>
-          <Box display="flex" alignItems="center">
+  <Box p={2}>
+    {product ? (
+      <>
+        <Box display="flex" alignItems="center">
             {/* ------------------------------------------- */}
             {/* Badge and category */}
             {/* ------------------------------------------- */}
@@ -78,8 +83,7 @@ const ProductDetail = () => {
             {product?.title}
           </Typography>
           <Typography variant="subtitle2" mt={1} color={theme.palette.text.secondary}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ex arcu, tincidunt bibendum
-            felis.
+            {product?.description}
           </Typography>
           {/* ------------------------------------------- */}
           {/* Price */}
@@ -90,53 +94,58 @@ const ProductDetail = () => {
               color={theme.palette.text.secondary}
               sx={{ textDecoration: 'line-through' }}
             >
-              ${product.salesPrice}
             </Box>{' '}
-            ${product.price}
+            {product.price}đ
           </Typography>
           {/* ------------------------------------------- */}
           {/* Ratings */}
           {/* ------------------------------------------- */}
           <Stack direction={'row'} alignItems="center" gap="10px" mt={2} pb={3}>
-            <Rating name="simple-controlled" size="small" value={product.rating} readOnly />
-            <Link href="/" color="inherit">
-              (236 reviews)
-            </Link>
           </Stack>
           <Divider />
           {/* ------------------------------------------- */}
-          {/* Colors */}
+          {/* Quantity in Stock, Weight */}
           {/* ------------------------------------------- */}
-          <Stack py={4} direction="row" alignItems="center">
-            <Typography variant="h6" mr={1}>
-              Colors:
+          <Box display="flex" justifyContent="space-between" mt={2}>
+            <Typography variant="body2" color="textSecondary">
+              Quantity in Stock: {product.quantityInStock}
             </Typography>
-            <Box>
-              {product.colors.map((color) => (
-                <Fab
-                  color="primary"
-                  sx={{
-                    transition: '0.1s ease-in',
-                    scale: scolor === color ? '0.9' : '0.7',
-                    backgroundColor: `${color}`,
-                    '&:hover': {
-                      backgroundColor: `${color}`,
-                      opacity: 0.7,
-                    },
-                  }}
-                  size="small"
-                  key={color}
-                  onClick={() => setColor(color)}
-                >
-                  {scolor === color ? <IconCheck size="1.1rem" /> : ''}
-                </Fab>
-              ))}
+          </Box>
+          <Divider />
+          {/* ------------------------------------------- */}
+          {/* Additional Information */}
+          {/* ------------------------------------------- */}
+          <Box mt={3}>
+            <Typography variant="h6" fontWeight="600">Additional Information</Typography>
+            <Box mt={2}>
+              <Typography variant="body2" color="textSecondary">
+                Authors: {product.authors}
+              </Typography>
+              <Typography variant="body2" color="textSecondary">
+                Publisher: {product.publisher}
+              </Typography>
+              <Typography variant="body2" color="textSecondary">
+                Publication Date: {product.publicationDate}
+              </Typography>
+              <Typography variant="body2" color="textSecondary">
+                Pages: {product.pages}
+              </Typography>
+              <Typography variant="body2" color="textSecondary">
+                Language: {product.language}
+              </Typography>
+              <Typography variant="body2" color="textSecondary">
+                Type: {product.type}
+              </Typography>
+              <Typography variant="body2" color="textSecondary">
+              Weight: {product.weight} kg
+            </Typography>
             </Box>
-          </Stack>
+          </Box>
+          <Divider />
           {/* ------------------------------------------- */}
           {/* Qty */}
           {/* ------------------------------------------- */}
-          <Stack direction="row" alignItems="center" pb={5}>
+          <Stack direction="row" alignItems="center" pb={5} mt={2}>
             <Typography variant="h6" mr={4}>
               QTY:
             </Typography>
@@ -162,7 +171,8 @@ const ProductDetail = () => {
                 xs: 12,
                 lg: 4,
                 md: 6
-              }}>
+              }}
+            >
               <Button
                 color="primary"
                 size="large"
@@ -180,7 +190,8 @@ const ProductDetail = () => {
                 xs: 12,
                 lg: 4,
                 md: 6
-              }}>
+              }}
+            >
               <Button
                 color="error"
                 size="large"
@@ -206,8 +217,9 @@ const ProductDetail = () => {
       ) : (
         'No product'
       )}
-    </Box>)
-  );
+    </Box>
+);
+
 };
 
 export default ProductDetail;

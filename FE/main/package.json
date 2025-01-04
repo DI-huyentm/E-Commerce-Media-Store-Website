@@ -65,6 +65,7 @@
     "redux-persist": "^6.0.0",
     "remark": "^15.0.1",
     "remark-html": "^16.0.1",
+    "reselect": "^5.1.1",
     "sharp": "^0.32.6",
     "simplebar-react": "^3.2.4",
     "slick-carousel": "^1.8.1",

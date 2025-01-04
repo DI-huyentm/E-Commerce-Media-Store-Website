@@ -1,14 +1,36 @@
 import axios from '../../../utils/axios';
 import { filter, map } from 'lodash';
 import { createSlice } from '@reduxjs/toolkit';
+import { createSelector } from 'reselect';
 
-//const API_URL = '/api/data/eCommerce/ProductsData';
+const selectEcommerceReducer = (state) => state.ecommerceReducer;
+
+export const selectProducts = createSelector(
+  [selectEcommerceReducer],
+  (EcommerceReducer) => EcommerceReducer.products || []
+);
+
+// export const selectProductByTitle = (title) => createSelector(
+//   [selectProducts],
+//   (products) => products.find((product) => product.title === title)
+// );
+export const selectProductByIndex = (index) =>
+  createSelector(
+    [selectProducts],
+    (products) => products[index]
+  );
 
 const initialState = {
   products: [],
   productSearch: '',
   sortBy: 'newest',
-  cart: [],
+  cart: {
+    result: {
+      cart: {
+        cartMediaList: []
+      }
+    }
+  },
   total: 0,
   filters: {
     category: 'All',
@@ -34,61 +56,36 @@ export const EcommerceSlice = createSlice({
     setVisibilityFilter: (state, action) => {
       state.currentFilter = action.payload;
     },
-    // SORT PRODUCTS
+    //  SORT  PRODUCTS
     sortByProducts(state, action) {
       state.sortBy = action.payload;
     },
-    // FILTER PRODUCTS
+    //  FILTER PRODUCTS
     filterProducts(state, action) {
       state.filters.category = action.payload.category;
     },
-    // FILTER Reset
+    //  FILTER Reset
     filterReset(state) {
       state.filters.category = 'All';
-      state.filters.color = 'All';
-      state.filters.gender = 'All';
-      state.filters.price = 'All';
       state.sortBy = 'newest';
     },
     // ADD TO CART
-    addToCart(state, action) {
+    addToCart: (state, action) => {
       const product = action.payload;
-      state.cart = [...state.cart, product];
-    },
-    // qty increment
-    increment(state, action) {
-      const productId = action.payload;
-      const updateCart = map(state.cart, (product) => {
-        if (product.id === productId) {
-          return {
-            ...product,
-            qty: product.qty + 1,
-          };
-        }
-        return product;
-      });
+      const existingProduct = state.cart.result.cart.cartMediaList.find((item) => item.id === product.id);
 
-      state.cart = updateCart;
+      if (existingProduct) {
+        // Cập nhật số lượng nếu sản phẩm đã tồn tại trong giỏ hàng
+        existingProduct.quantity += product.quantity || 1; // Nếu có quantity từ API, dùng quantity đó, nếu không thì tăng thêm 1
+      } else {
+        // Thêm mới sản phẩm vào giỏ với quantity mặc định là 1
+        state.cart.result.cart.cartMediaList.push({ ...product, quantity: product.quantity || 1 });
+      }
     },
-    // qty decrement
-    decrement(state, action) {
-      const productId = action.payload;
-      const updateCart = map(state.cart, (product) => {
-        if (product.id === productId) {
-          return {
-            ...product,
-            qty: product.qty - 1,
-          };
-        }
-        return product;
-      });
 
-      state.cart = updateCart;
-    },
-    // delete Cart
-    deleteCart(state, action) {
-      const updateCart = filter(state.cart, (item) => item.id !== action.payload);
-      state.cart = updateCart;
+    removeFromCart: (state, action) => {
+      const product = action.payload;
+      state.cart.result.cart.cartMediaList = state.cart.result.cart.cartMediaList.filter((item) => item.id !== product.id);
     },
   },
 });
@@ -104,19 +101,18 @@ export const {
   deleteCart,
   decrement,
   addToCart,
+  removeFromCart,
   filterReset,
 } = EcommerceSlice.actions;
 
+// Fetch tất cả sản phẩm
 export const fetchProducts = () => async (dispatch) => {
   try {
-    const response = await axios.get('http://localhost:8080/api/v1/media');
-    console.log(response.data);  // Kiểm tra dữ liệu trả về từ API
-    dispatch(getProducts(response.data));  // Dispatch với dữ liệu nhận được
+    const response = await axios.get('http://localhost:8080/api/v1/media'); // Không có phân trang
+    dispatch(getProducts(response.data)); // Cập nhật danh sách sản phẩm vào state
   } catch (error) {
-    dispatch(hasError(error));
-    console.error("API Error: ", error);  // In lỗi API nếu có
+    dispatch(hasError(error.message));
   }
 };
-
 
 export default EcommerceSlice.reducer;

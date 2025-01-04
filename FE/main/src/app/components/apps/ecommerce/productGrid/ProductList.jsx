@@ -13,23 +13,27 @@ import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchProducts, addToCart, filterReset } from '@/store/apps/eCommerce/EcommerceSlice';
+// import { fetchProducts, addToCart, filterReset } from '@/store/apps/eCommerce/EcommerceSlice';
 import ProductSearch from './ProductSearch';
 import { IconBasket, IconMenu2 } from '@tabler/icons-react';
 import AlertCart from '../productCart/AlertCart';
 import BlankCard from '../../../shared/BlankCard';
 import Image from 'next/image';
+import { fetchProducts, selectProducts } from '@/store/apps/eCommerce/EcommerceSlice';
 
-const ProductList = ({ onClick }) => {
-  const dispatch = useDispatch();
+import { addItemToCartAsync } from '@/store/apps/eCommerce/CartManage';
+
+const ProductList = () => {
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up('lg'));
+  const dispatch = useDispatch();
+  // const products = useSelector((state) => state.ecommerce.products);
+  const products = useSelector(selectProducts);
 
   useEffect(() => {
-    dispatch(fetchProducts());
+    dispatch(fetchProducts()); // Lấy tất cả sản phẩm mà không phân trang
   }, [dispatch]);
 
   const getVisibleProduct = (products, sortBy, filters, search) => {
-    // SORT BY
     if (sortBy === 'newest') {
       products = orderBy(products, ['created'], ['desc']);
     }
@@ -43,34 +47,29 @@ const ProductList = ({ onClick }) => {
       products = orderBy(products, ['discount'], ['desc']);
     }
 
-    // FILTER PRODUCTS
     if (filters.category !== 'All') {
-      //products = filter(products, (_product) => includes(_product.category, filters.category));
       products = products.filter((_product) => _product.category.includes(filters.category));
     }
 
-
-
-    //FILTER PRODUCTS BY Search
     if (search !== '') {
       products = products.filter((_product) =>
         _product.title.toLocaleLowerCase().includes(search.toLocaleLowerCase()),
       );
     }
-
     return products;
   };
 
-  const getProducts = useSelector((state) =>
-    getVisibleProduct(
-      state.ecommerceReducer.products,
-      state.ecommerceReducer.sortBy,
-      state.ecommerceReducer.filters,
-      state.ecommerceReducer.productSearch,
-    ),
+  const getProducts = getVisibleProduct(
+    products,
+    useSelector((state) => state.ecommerce.sortBy),
+    useSelector((state) => state.ecommerce.filters),
+    useSelector((state) => state.ecommerce.productSearch),
   );
 
-  // for alert when added something to cart
+  const handleAddToCart = (product) => {
+    dispatch(addItemToCartAsync(product));
+  };
+
   const [cartalert, setCartalert] = React.useState(false);
 
   const handleClick = () => {
@@ -84,7 +83,6 @@ const ProductList = ({ onClick }) => {
     setCartalert(false);
   };
 
-  // skeleton
   const [isLoading, setLoading] = React.useState(true);
 
   useEffect(() => {
@@ -96,16 +94,14 @@ const ProductList = ({ onClick }) => {
   }, []);
 
   return (
-    (<Box>
-      {/* ------------------------------------------- */}
-      {/* Header Detail page */}
-      {/* ------------------------------------------- */}
+    <Box>
       <Stack
         direction="row"
         sx={{
-          justifyContent: "space-between",
-          pb: 3
-        }}>
+          justifyContent: 'space-between',
+          pb: 3,
+        }}
+      >
         {lgUp ? (
           <Typography variant="h5">Products</Typography>
         ) : (
@@ -117,9 +113,6 @@ const ProductList = ({ onClick }) => {
           <ProductSearch />
         </Box>
       </Stack>
-      {/* ------------------------------------------- */}
-      {/* Page Listing product */}
-      {/* ------------------------------------------- */}
       <Grid container spacing={3}>
         {getProducts.length > 0 ? (
           <>
@@ -130,31 +123,27 @@ const ProductList = ({ onClick }) => {
                   xs: 12,
                   lg: 4,
                   md: 4,
-                  sm: 6
+                  sm: 6,
                 }}
                 sx={{
-                  display: "flex",
-                  alignItems: "stretch"
-                }}>
-                {/* ------------------------------------------- */}
-                {/* Product Card */}
-                {/* ------------------------------------------- */}
+                  display: 'flex',
+                  alignItems: 'stretch',
+                }}
+              >
                 {isLoading ? (
-                  <>
-                    <Skeleton
-                      variant="rectangular"
-                      width={270}
-                      height={300}
-                      sx={{
-                        borderRadius: (theme) => theme.shape.borderRadius / 5,
-                      }}
-                    ></Skeleton>
-                  </>
+                  <Skeleton
+                    variant="rectangular"
+                    width={270}
+                    height={300}
+                    sx={{
+                      borderRadius: (theme) => theme.shape.borderRadius / 5,
+                    }}
+                  />
                 ) : (
                   <BlankCard className="hoverCard">
                     <Typography component={Link} href={`/apps/ecommerce/detail/${product.id}`}>
                       <Image
-                        src={product.photo}
+                        src={product.imageUrl}
                         alt="img"
                         width={250}
                         height={268}
@@ -165,7 +154,7 @@ const ProductList = ({ onClick }) => {
                       <Fab
                         size="small"
                         color="primary"
-                        onClick={() => dispatch(addToCart(product)) && handleClick()}
+                        onClick={() => handleAddToCart(product)}
                         sx={{
                           bottom: '75px',
                           right: '15px',
@@ -180,65 +169,51 @@ const ProductList = ({ onClick }) => {
                       <Stack
                         direction="row"
                         sx={{
-                          alignItems: "center",
-                          justifyContent: "space-between",
-                          mt: 1
-                        }}>
-                        <Stack direction="row" sx={{
-                          alignItems: "center"
-                        }}>
-                          <Typography variant="h6">${product.price}</Typography>
-                          <Typography
-                            color="textSecondary"
-                            sx={{
-                              ml: 1,
-                              textDecoration: 'line-through'
-                            }}>
-                            ${product.salesPrice}
-                          </Typography>
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                          mt: 1,
+                        }}
+                      >
+                        <Stack direction="row" sx={{ alignItems: 'center' }}>
+                          <Typography variant="h6">{product.price}đ</Typography>
                         </Stack>
-                        {/* <Rating name="read-only" size="small" value={product.rating} readOnly /> */}
+                        <Typography variant="h6">{product.quantityInStock}</Typography>
                       </Stack>
                     </CardContent>
                   </BlankCard>
                 )}
                 <AlertCart handleClose={handleClose} openCartAlert={cartalert} />
-                {/* ------------------------------------------- */}
-                {/* Product Card */}
-                {/* ------------------------------------------- */}
               </Grid>
             ))}
           </>
         ) : (
-          <>
-            <Grid
-              size={{
-                xs: 12,
-                lg: 12,
-                md: 12,
-                sm: 12
-              }}>
-              <Box
-                sx={{
-                  textAlign: "center",
-                  mt: 6
-                }}>
-                <Image src='/images/products/empty-shopping-cart.svg' alt="cart" width={200} height={100} />
-                <Typography variant="h2">There is no Product</Typography>
-                <Typography variant="h6" sx={{
-                  mb: 3
-                }}>
-                  The Product you are searching is no longer available.
-                </Typography>
-                <Button variant="contained" onClick={() => dispatch(filterReset())}>
-                  Try Again
-                </Button>
-              </Box>
-            </Grid>
-          </>
+          <Grid
+            size={{
+              xs: 12,
+              lg: 12,
+              md: 12,
+              sm: 12,
+            }}
+          >
+            <Box
+              sx={{
+                textAlign: 'center',
+                mt: 6,
+              }}
+            >
+              <Image src="/images/products/empty-shopping-cart.svg" alt="cart" width={200} height={100} />
+              <Typography variant="h2">There is no Product</Typography>
+              <Typography variant="h6" sx={{ mb: 3 }}>
+                The Product you are searching is no longer available.
+              </Typography>
+              <Button variant="contained" onClick={() => dispatch(filterReset())}>
+                Try Again
+              </Button>
+            </Box>
+          </Grid>
         )}
       </Grid>
-    </Box>)
+    </Box>
   );
 };
 
