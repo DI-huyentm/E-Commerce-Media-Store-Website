@@ -7,8 +7,8 @@ spring:
     username: ${MYSQL_USERNAME}
     password: ${MYSQL_PASSWORD}
   jpa:
-#    generate-ddl: false
-    generate-ddl: true
+    generate-ddl: false
+#    generate-ddl: true
     show-sql: true
     hibernate:
       ddl-auto: none
