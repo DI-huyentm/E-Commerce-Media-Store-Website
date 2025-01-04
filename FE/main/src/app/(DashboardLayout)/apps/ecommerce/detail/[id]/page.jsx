@@ -35,7 +35,7 @@ const EcommerceDetail = () => {
             {/* ------------------------------------------- */}
             <Grid container spacing={3}>
               <Grid item xs={12} sm={12} lg={6}>
-                <ProductCarousel />
+                {/* <ProductCarousel /> */}
               </Grid>
               <Grid item xs={12} sm={12} lg={6}>
                 <ProductDetail />
@@ -44,7 +44,11 @@ const EcommerceDetail = () => {
           </ChildCard>
         </Grid>
         <Grid item xs={12} sm={12} lg={12}>
+<<<<<<< HEAD
           
+=======
+          {/* <ProductDesc /> */}
+>>>>>>> 0124caa39083dfd4e7d770e4f4d4f9e0f82c4c57
         </Grid>
         <Grid item xs={12} sm={12} lg={12}>
           

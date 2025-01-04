@@ -51,11 +51,21 @@ const ProductList = () => {
       products = products.filter((_product) => _product.category.includes(filters.category));
     }
 
+<<<<<<< HEAD
+=======
+
+
+    //FILTER PRODUCTS BY Search
+>>>>>>> 0124caa39083dfd4e7d770e4f4d4f9e0f82c4c57
     if (search !== '') {
       products = products.filter((_product) =>
         _product.title.toLocaleLowerCase().includes(search.toLocaleLowerCase()),
       );
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0124caa39083dfd4e7d770e4f4d4f9e0f82c4c57
     return products;
   };
 
@@ -177,7 +187,11 @@ const ProductList = () => {
                         <Stack direction="row" sx={{ alignItems: 'center' }}>
                           <Typography variant="h6">{product.price}đ</Typography>
                         </Stack>
+<<<<<<< HEAD
                         <Typography variant="h6">{product.quantityInStock}</Typography>
+=======
+                        {/* <Rating name="read-only" size="small" value={product.rating} readOnly /> */}
+>>>>>>> 0124caa39083dfd4e7d770e4f4d4f9e0f82c4c57
                       </Stack>
                     </CardContent>
                   </BlankCard>

@@ -22,26 +22,34 @@ import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
+<<<<<<< HEAD
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import { IconCheck } from '@tabler/icons-react';
+=======
+>>>>>>> 0124caa39083dfd4e7d770e4f4d4f9e0f82c4c57
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+<<<<<<< HEAD
 import Radio from '@mui/material/Radio';
 import React from 'react';
 import { Stack } from '@mui/system';
 import Typography from '@mui/material/Typography';
+=======
+import Typography from '@mui/material/Typography';
+import { filterProducts, filterReset } from '@/store/apps/eCommerce/EcommerceSlice';
+import { IconCircles, IconHanger, IconNotebook, IconMoodSmile } from '@tabler/icons-react';
+>>>>>>> 0124caa39083dfd4e7d770e4f4d4f9e0f82c4c57
 
 const ProductFilter = () => {
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.ecommerceReducer.products);
   const active = useSelector((state) => state.ecommerceReducer.filters);
-  const checkactive = useSelector((state) => state.ecommerceReducer.sortBy);
   const customizer = useSelector((state) => state.customizer);
   const br = `${customizer.borderRadius}px`;
 
+<<<<<<< HEAD
   const getUniqueData = (data, attr) => {
     let newVal = data.map((curElem) => {
       return curElem[attr];
@@ -54,6 +62,8 @@ const ProductFilter = () => {
   };
 
 
+=======
+>>>>>>> 0124caa39083dfd4e7d770e4f4d4f9e0f82c4c57
   const filterCategory = [
     {
       id: 1,
@@ -83,6 +93,7 @@ const ProductFilter = () => {
       sort: 'cd',
       icon: IconMoodSmile,
     },
+<<<<<<< HEAD
     {
       id: 11,
       name: 'LP',
@@ -91,31 +102,52 @@ const ProductFilter = () => {
     },
   ];
 
+=======
+  ];
 
-  return (<>
-    <List>
-      {/* ------------------------------------------- */}
-      {/* Category filter */}
-      {/* ------------------------------------------- */}
-      {filterCategory.map((filter) => {
-        if (filter.filterbyTitle) {
-          return (
-            (<Typography
-              variant="subtitle2"
-              key={filter.id}
-              sx={{
-                fontWeight: 600,
-                px: 3,
-                mt: 2,
-                pb: 2
-              }}>
-              {filter.filterbyTitle}
-            </Typography>)
-          );
-        } else if (filter.devider) {
-          return <Divider key={filter.id} />;
-        }
+  return (
+    <>
+      <List>
+        {/* ------------------------------------------- */}
+        {/* Category filter */}
+        {/* ------------------------------------------- */}
+        {filterCategory.map((filter) => {
+          if (filter.filterbyTitle) {
+            return (
+              <Typography
+                variant="subtitle2"
+                key={filter.id}
+                sx={{
+                  fontWeight: 600,
+                  px: 3,
+                  mt: 2,
+                  pb: 2
+                }}
+              >
+                {filter.filterbyTitle}
+              </Typography>
+            );
+          } else {
+            return (
+              <ListItemButton
+                sx={{ mb: 1, mx: 3, borderRadius: br }}
+                selected={active.category === `${filter.sort}`}
+                onClick={() => dispatch(filterProducts({ category: `${filter.sort}` }))}
+                key={filter.id}
+              >
+                <ListItemIcon sx={{ minWidth: '30px' }}>
+                  <filter.icon stroke="1.5" size="19" />
+                </ListItemIcon>
+                <ListItemText>{filter.name}</ListItemText>
+              </ListItemButton>
+            );
+          }
+        })}
+>>>>>>> 0124caa39083dfd4e7d770e4f4d4f9e0f82c4c57
 
+        <Divider />
+
+<<<<<<< HEAD
         return (
           <ListItemButton
             sx={{ mb: 1, mx: 3, borderRadius: br }}
@@ -133,6 +165,19 @@ const ProductFilter = () => {
       
     </List>
   </>);
+=======
+        {/* ------------------------------------------- */}
+        {/* Reset */}
+        {/* ------------------------------------------- */}
+        <Box sx={{ p: 3 }}>
+          <Button variant="contained" onClick={() => dispatch(filterReset())} fullWidth>
+            Reset Filters
+          </Button>
+        </Box>
+      </List>
+    </>
+  );
+>>>>>>> 0124caa39083dfd4e7d770e4f4d4f9e0f82c4c57
 };
 
 export default ProductFilter;
