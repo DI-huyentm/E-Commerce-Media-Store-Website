@@ -1,0 +1,12 @@
+# Database
+MYSQL_USERNAME: root
+MYSQL_PASSWORD: ""
+MYSQL_HOST: localhost
+MYSQL_PORT: 3306
+#MYSQL_DB: aims_test_tuan
+MYSQL_DB: aims
+
+# Server
+SERVER_PORT: 8080
+
+ACTIVE_PROFILE: dev
