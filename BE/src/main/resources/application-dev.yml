@@ -3,7 +3,8 @@ MYSQL_USERNAME: root
 MYSQL_PASSWORD: ""
 MYSQL_HOST: localhost
 MYSQL_PORT: 3306
-MYSQL_DB: aims
+MYSQL_DB: aims_db
+#MYSQL_DB: aims
 
 # Server
 SERVER_PORT: 8080
